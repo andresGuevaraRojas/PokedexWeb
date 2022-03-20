@@ -7,7 +7,7 @@ body{
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     font-family: 'Fredoka', sans-serif;
 }
 .pokedex{
@@ -16,7 +16,8 @@ body{
     max-width: 390px;
     padding: 20px;
     height: 100vh;
-    max-height: 844px;
+    min-height: 600px;
+    max-height: 700px;
 }
 .header{
     display: flex;    
@@ -114,6 +115,7 @@ body{
 .inputs{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 40px;
 }
 .inputs__left{
     display: flex;
@@ -270,4 +272,29 @@ body{
 
 .loadingDialog-hide{
     display: none;
+}
+
+.search input{
+    background-color: #f1f2d3;
+    border: 1px solid black;
+    border-radius: 20px;    
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+    position: relative;
+    cursor: pointer;
+    background-color: #262626;
+    color: white;
 }

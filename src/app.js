@@ -7,12 +7,11 @@ const imageScreen = document.getElementById("imageScreen")
 const pokemonNameText = document.getElementById("pokemonNameText")
 const pokemonWeightValue = document.getElementById("pokemonWeightValue")
 const pokemonHeightValue = document.getElementById("pokemonHeightValue")
+const pokemonInput = document.getElementById("pokemonInput")
+const searchButton = document.getElementById("search")
 
 let pokemonCounter = 1;
-let evolutionChain = null;
-let evolvesTo = [];
 let evolCount = -1;
-let clicks = 0
 let evolves = []
 
 
@@ -46,6 +45,41 @@ keyLeft.addEventListener('click',async function(){
     }    
     await loadPokemon()
 })
+
+searchButton.addEventListener('click',async event=>{   
+    
+    resetEvolvesData()
+    const pokemon = pokemonInput.value
+    if(pokemon.trim() == ''){
+        return
+    }
+    try {
+        await searchPokemon(pokemon.toLowerCase())
+    } catch (error) {
+        loadingDialog.setAttribute('class','loadingDialog-show')
+        loadingDialog.innerHTML = 'Pokemon no encontrado 😓'
+        setImage('')   
+        setName('')        
+        setPokemonHeightValue('?')
+        setPokemonWeightValue('?')  
+    }   
+})
+
+async function searchPokemon(nameOrId){
+    loadingDialog.setAttribute('class','loadingDialog-show')
+    loadingDialog.innerHTML = 'Buscando pokemon...'
+
+    const pokemon = await getPokemon(nameOrId);
+
+    setName(pokemon.name)
+    setImage(pokemon.sprites.front_default)  
+    setPokemonHeightValue(pokemon.height)
+    setPokemonWeightValue(pokemon.weight)  
+
+    loadingDialog.setAttribute('class','loadingDialog-hide')
+    loadingDialog.innerHTML = ''  
+
+}
 loadPokemon()
 async function loadPokemon(){          
     evolCount++
@@ -105,9 +139,8 @@ function setPokemonHeightValue(value){
 function setPokemonWeightValue(value){
     pokemonWeightValue.innerHTML = value
 }
-function resetEvolvesData(){
-    evolutionChain = null;
-    evolvesTo = null;
+function resetEvolvesData(){    
+    evolves = [];
     evolCount = -1;
 }
 function evolvesToArray(chain){

@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pokedex.css">
+    <link rel="stylesheet" href="panel.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>PokedexWeb</title>
 </head>
@@ -57,7 +59,14 @@
                 </div>
             </div>        
         </section>
+        <section class="search">
+            <label for="pokemon">Pokemon: <input type="text" name="pokemon" id="pokemonInput"></label>          
+            <button type="submit" id="search"><span class="material-icons">search</span></button>
+        </section>
     </main>
+    <section class="panel">
+
+    </section>
     <script src="./src/app.js"></script>
 </body>
 </html>

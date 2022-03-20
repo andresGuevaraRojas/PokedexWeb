@@ -1,0 +1,15 @@
+@media only screen and (max-width: 750px) {
+    .panel{
+        display: none;
+    }
+}
+.panel{
+    background-color: #ce1131;
+    border-left: 1px solid #730403;
+    width: 100vw;    
+    max-width: 390px;
+    padding: 20px;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 700px;
+}
