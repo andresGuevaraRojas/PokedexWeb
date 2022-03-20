@@ -1,0 +1,273 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Fredoka', sans-serif;
+}
+.pokedex{
+    background-color: #ce1131;
+    width: 100vw;    
+    max-width: 390px;
+    padding: 20px;
+    height: 100vh;
+    max-height: 844px;
+}
+.header{
+    display: flex;    
+    margin-bottom: 20px;    
+}
+.header > div{
+    margin-right: 10px;
+}
+.header__bigCircle{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;    
+    position: relative;
+}
+.header__bigCircle__cristal{    
+    width: 80%;
+    height: 80%;
+    top: 6%;
+    left: 12%;
+    border-radius: 50%;    
+    background-color: #009dd4;        
+    position: relative;
+}
+.header__bigCircle__cristal::before{
+    content: "";
+    display: block;
+    width: 75%;
+    height: 75%;
+    left: 8%;
+    border-radius: 50%;    
+    background-color: #0bcdff;        
+    position: absolute;
+}
+.header__bigCircle__cristal::after{    
+    content: "";
+    display: block;
+    width: 30%;
+    height: 30%;
+    left: 30%;
+    top: 10%;
+    border-radius: 50%;    
+    background-color: #9ce8ff;        
+    position: absolute;
+}
+.header__circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.header__circle-red{
+    background-color: #e70906;
+    border-left: 4px solid #730403;
+    border-top: 4px solid #730403;
+}
+.header__circle-green{
+    background-color: #55ab62;
+    border-left: 4px solid #2a5530;
+    border-top: 4px solid #2a5530;
+}
+.header__circle-yellow{
+    background-color: #e3e60f;
+    border-left: 4px solid #717307;
+    border-top: 4px solid #717307;
+}
+.screen{    
+    width: 100%;       
+    background-color: #dedede;    
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.screen__image{
+    background-color: #f1f2d3;
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pokemon__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pokemon__information{
+    display: flex;    
+    font-size: 0.8em;
+}
+.pokemon__information p{
+    padding: 0 4px;
+}
+.inputs{
+    display: flex;
+    justify-content: space-between;
+}
+.inputs__left{
+    display: flex;
+    flex-direction: column;
+}
+.inputs__buttons{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.mainButton,.largeButton-red{
+    margin-right: 14px;
+}
+.mainButton{
+    width: 50px;
+    height: 50px;    
+    border: none;    
+    border-radius: 50%;
+    background-color: #050505;   
+    outline: none;
+    padding: 0;
+    position: relative;
+}
+.mainButton::before{
+    content: "";
+    width: 40px;
+    height: 40px;    
+    border-radius: 50%;
+    background-color: #222222;      
+    display: block; 
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.largeButton{
+    width: 60px;
+    height: 15px;
+    border-radius: 10px;
+    border: none;
+    padding: none;
+    outline: none;
+}
+.largeButton-red{
+    background-color: #c70c13;
+}
+.largeButton-blue{
+    background-color: #095378;
+    
+}
+.greenRect{
+    background-color: #55ab62;
+    width: 140px;
+    height: 60px;
+    border-radius:8px;
+    position: relative;
+    left: 50px;
+}
+.direction__buttons{   
+    position: relative;
+}
+.direction__buttons__up{
+    position: absolute;
+    width: 80px;
+    height: 80px;    
+    top: 20px;              
+}
+.direction__buttons__up button{
+    position: absolute;    
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: #262626;
+    cursor: pointer;
+}
+.direction__buttons__up::before{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #262626;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border: 1px solid #262626;
+}
+
+.direction__buttons__up::after{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #262626;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border: 1px solid #0d0d0d;
+}
+
+.direction__buttons__up .up,.direction__buttons__up .bottom{
+    width: 25px;   
+    height: 27.5px;    
+    left: 50%;    
+}
+.direction__buttons__up .up{
+    transform: translate(-50%);
+}
+.direction__buttons__up .bottom{   
+    bottom: 0;
+    transform: translate(-50%);
+}
+.direction__buttons__up .left,.direction__buttons__up .right{
+    width: 27.5px;
+    height: 25px;          
+    top: 50%;    
+}
+.direction__buttons__up .left{
+    transform: translateY(-50%);
+}
+.direction__buttons__up .right{
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.direction__buttons__bottom{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    top: 22px;
+    transform: revert;
+    left: -3px;
+    transform: scale(1.1);
+    
+}
+.direction__buttons__bottom__vertical,.direction__buttons__bottom__horizontal{
+    width: 80px;
+    height: 25px;
+    background-color: #0d0d0d;
+    border-radius: 4px;
+    position:absolute;
+    left: 50%;
+    bottom: 50%;
+}
+.direction__buttons__bottom__horizontal{       
+    transform: translate(-50%,50%) rotate(90deg);
+}
+.direction__buttons__bottom__vertical{    
+    transform: translate(-50%,50%);
+}
+
+.loadingDialog-show{
+    display: block;
+}
+
+.loadingDialog-hide{
+    display: none;
+}
