@@ -28,6 +28,7 @@
 .panel__screen__innner{
     background-color: #050505;
     padding: 10px;
+    min-height: 483px;
     width: 100%;        
 }
 .types{
