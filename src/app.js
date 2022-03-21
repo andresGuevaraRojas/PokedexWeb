@@ -9,6 +9,9 @@ const pokemonWeightValue = document.getElementById("pokemonWeightValue")
 const pokemonHeightValue = document.getElementById("pokemonHeightValue")
 const pokemonInput = document.getElementById("pokemonInput")
 const searchButton = document.getElementById("search")
+const lisTypes = document.getElementById('listTypes')
+const listMovs = document.getElementById('listMovs')
+const lisStasts = document.getElementById('listStats')
 
 let pokemonCounter = 1;
 let evolCount = -1;
@@ -16,6 +19,7 @@ let evolves = []
 
 
 keyUp.addEventListener('click',async function(){         
+    resetLists()
     if(evolCount<evolves.length-1){
         evolCount++
     }      
@@ -25,10 +29,12 @@ keyRight.addEventListener('click',async function(){
 
     setName('')
     resetEvolvesData()
+    resetLists()
     pokemonCounter++
     await loadPokemon()
 })
 keyDown.addEventListener('click', async function(){
+    resetLists()
     if(evolCount>0){
         evolCount--
     }      
@@ -37,6 +43,7 @@ keyDown.addEventListener('click', async function(){
 keyLeft.addEventListener('click',async function(){
     setName('')
     resetEvolvesData()
+    resetLists()
     if(pokemonCounter<1){
         return
     }
@@ -48,11 +55,12 @@ keyLeft.addEventListener('click',async function(){
 
 searchButton.addEventListener('click',async event=>{   
     
-    resetEvolvesData()
+    resetEvolvesData()    
     const pokemon = pokemonInput.value
     if(pokemon.trim() == ''){
         return
     }
+    resetLists()
     try {
         await searchPokemon(pokemon.toLowerCase())
     } catch (error) {
@@ -62,6 +70,7 @@ searchButton.addEventListener('click',async event=>{
         setName('')        
         setPokemonHeightValue('?')
         setPokemonWeightValue('?')  
+        resetLists()
     }   
 })
 
@@ -75,10 +84,11 @@ async function searchPokemon(nameOrId){
     setImage(pokemon.sprites.front_default)  
     setPokemonHeightValue(pokemon.height)
     setPokemonWeightValue(pokemon.weight)  
-
+    setListTypes(pokemon.types)
+    setListMovs(pokemon.moves)
+    setListStats(pokemon.stats)
     loadingDialog.setAttribute('class','loadingDialog-hide')
-    loadingDialog.innerHTML = ''  
-
+    loadingDialog.innerHTML = ''     
 }
 loadPokemon()
 async function loadPokemon(){          
@@ -95,6 +105,9 @@ async function loadPokemon(){
     setImage(pokemon.sprites.front_default)  
     setPokemonHeightValue(pokemon.height)
     setPokemonWeightValue(pokemon.weight)  
+    setListTypes(pokemon.types)
+    setListMovs(pokemon.moves)
+    setListStats(pokemon.stats)
 
     loadingDialog.setAttribute('class','loadingDialog-hide')
     loadingDialog.innerHTML = 'Cargando pokemon...'    
@@ -108,6 +121,9 @@ function loadPokemonEvol(evolCount){
     setName(pokemon.name)
     setPokemonHeightValue(pokemon.height)
     setPokemonWeightValue(pokemon.weight)
+    setListTypes(pokemon.types)
+    setListMovs(pokemon.moves)
+    setListStats(pokemon.stats)
     
     loadingDialog.setAttribute('class','loadingDialog-hide')
     loadingDialog.innerText = ''
@@ -132,7 +148,53 @@ function setImage(src){
 function setName(name){
     pokemonNameText.innerText = name.toUpperCase()
 }
+function setListTypes(types){   
+    types.forEach(type => {
+        let li = document.createElement('li')
+        li.innerText = type.type.name.toUpperCase()
+        lisTypes.appendChild(li)        
+    });
+}
+function setListMovs(movs){   
+    movs.forEach(mov => {
+        let li = document.createElement('li')
+        li.innerText = mov.move.name.toUpperCase()
+        listMovs.appendChild(li)        
+    });
+}
+function setListStats(stats){   
+    stats.forEach(stat => {
+        let statLi = document.createElement('li')
+        statLi.setAttribute('class','stat')
 
+        let statBar = document.createElement('div')               
+        statBar.setAttribute('class','stat__bar')
+
+        let statBarInner = document.createElement('div')
+        statBarInner.setAttribute('class','stat__bar__inner')
+        statBarInner.style.height = `${stat.base_stat}px`
+
+        let statData = document.createElement('div')
+        statData.setAttribute('class','stat__data')
+
+        let statValue = document.createElement('span')
+        statValue.innerText = stat.base_stat
+
+        let statName = document.createElement('span')
+        statName.innerText = stat.stat.name
+
+
+        statData.appendChild(statValue)
+        statData.appendChild(statName)
+
+        statBar.appendChild(statBarInner)
+
+        statLi.appendChild(statBar)
+        statLi.appendChild(statData)        
+        
+        lisStasts.appendChild(statLi)
+    });
+}
 function setPokemonHeightValue(value){
     pokemonHeightValue.innerHTML = value
 }
@@ -143,21 +205,12 @@ function resetEvolvesData(){
     evolves = [];
     evolCount = -1;
 }
-function evolvesToArray(chain){
-    let evolves = []
-    if(chain.evolves_to.length<1){
-        return []
-    }    
-    let root = chain.evolves_to[0]
-    let temp = root
-    while(temp){
-        console.log(temp)
-        evolves.push(temp)
-        temp = temp.evolves_to[0]
-    }
-
-    
+function resetLists(){
+    lisTypes.innerHTML = ''
+    listMovs.innerHTML = ''
+    lisStasts.innerHTML = ''
 }
+
 
 async function getEvolves(id){
 

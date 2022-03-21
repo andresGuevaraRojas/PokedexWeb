@@ -9,7 +9,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>PokedexWeb</title>
@@ -32,8 +32,8 @@
                     <span id="pokemonNameText"></span>                    
                 </div>                
                 <div class="pokemon__information">
-                    <p>Height: <span id="pokemonHeightValue">?</span></p>                
-                    <p>Weight: <span id="pokemonWeightValue">?</span></p>
+                    <p>Altura: <span id="pokemonHeightValue">?</span></p>                
+                    <p>Peso: <span id="pokemonWeightValue">?</span></p>                    
                 </div>
             </section>
         </section>
@@ -65,7 +65,24 @@
         </section>
     </main>
     <section class="panel">
-
+        <section class="panel__screen">
+            <div class="panel__screen__innner">
+                <div class="types">
+                    <Label>Tipo</Label>
+                    <ul id="listTypes"></ul>
+                </div>
+                <div class="movs">
+                    <Label>Movimientos</Label>
+                    <ul id="listMovs"></ul>
+                </div>
+                <div class="stats">
+                    <Label>Estaditicas</Label>    
+                    <ul id="listStats">
+                                         
+                    </ul>                
+                </div>                
+            </div>            
+        </section>        
     </section>
     <script src="./src/app.js"></script>
 </body>
